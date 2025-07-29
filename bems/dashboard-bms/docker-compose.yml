@@ -1,0 +1,62 @@
+networks:
+  heb_network:
+    external: true
+
+services:
+  # Backend Service 1 (be-1)
+  be-1:
+    image: HEB2024/be-1:latest
+    container_name: be-1
+    ports:
+      - "10004:10004"  
+    networks:
+      heb_network:
+        ipv4_address: 172.35.0.5
+    restart: unless-stopped
+    volumes:
+     - ./be-1/log-insert:/home/sstk/HEB2024/dashboard-bms/be-1/log-insert/
+     - ./be-1/log-resp-history:/home/sstk/HEB2024/dashboard-bms/be-1/log-resp-history/
+     - ./be-1/log-resp-totalMCB:/home/sstk/HEB2024/dashboard-bms/be-1/log-resp-totalMCB/
+     - ./be-1/log-resp-total-PVMCB:/home/sstk/HEB2024/dashboard-bms/be-1/log-resp-total-PVMCB/
+     - ./be-1/log-resp-ZEB:/home/sstk/HEB2024/dashboard-bms/be-1/log-resp-ZEB/
+     - ./be-1/log-responseIEQ:/home/sstk/HEB2024/dashboard-bms/be-1/log-responseIEQ/
+     - ./be-1/log-response-energy:/home/sstk/HEB2024/dashboard-bms/be-1/log-response-energy/
+
+  # Backend Service 2 (be-2)
+  be-2:
+    image: HEB2024/be-2:latest
+    container_name: be-2
+    ports:
+      - "10005:10005" 
+    networks:
+      heb_network:
+        ipv4_address: 172.35.0.6
+    restart: unless-stopped
+    volumes:
+     - ./be-2/log-req-temp:/home/sstk/HEB2024/dashboard-bms/be-2/log-heatmap/
+
+  # Backend Service 2 (be-2)
+  be-3:
+    image: HEB2024/be-3:latest
+    container_name: be-3
+    ports:
+      - "10009:10009"  
+    networks:
+      heb_network:
+        ipv4_address: 172.35.0.8
+    restart: unless-stopped
+
+  # Frontend Service (fe)
+  fe:
+    image: HEB2024/fe-dashboard:latest
+    container_name: fe
+    ports:
+      - "10006:10006"  
+    depends_on:
+      - be-1
+      - be-2
+      - be-3
+    networks:
+      heb_network:
+        ipv4_address: 172.35.0.7
+    restart: unless-stopped
