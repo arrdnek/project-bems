@@ -1,0 +1,29 @@
+networks:
+  heb_network:
+    external: true
+
+services:
+  soft-sensor:
+    image: HEB2024/soft-sensor:latest
+    container_name: soft-sensor
+    ports:
+      - "10020:10020"
+    networks:
+      heb_network:
+        ipv4_address: 172.35.0.9
+    restart: unless-stopped
+    volumes:
+      - ./soft-sensor/log/process_time.txt:/app/log/process_time.txt
+    
+
+  ai-occupancy:
+    image: HEB2024/ai-occupancy:latest
+    container_name: ai-occupancy
+    ports:
+      - "10021:10021"
+    networks:
+      heb_network:
+        ipv4_address: 172.35.0.10
+    restart: unless-stopped
+
+    
