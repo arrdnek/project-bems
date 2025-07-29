@@ -1,0 +1,101 @@
+networks:
+  heb_network:
+    external: true
+
+services:
+  # Database Service (MariaDB)
+  database:
+    image: mariadb:10.3
+    container_name: database
+    environment:
+      MYSQL_ROOT_PASSWORD: tanyaBuFar
+      MYSQL_DATABASE: heb_iot_alpha
+      MYSQL_USER: root
+      MYSQL_PASSWORD: tanyaBuFar
+    ports:
+      - "10001:3306"  
+    volumes:
+      - db_data:/var/lib/mysql  
+    networks:
+      heb_network:
+        ipv4_address: 172.35.0.3
+    restart: unless-stopped
+
+  emqx1:
+    image: emqx/emqx:5.5.0
+    container_name: sstk-emqx-node-1
+    environment:
+      - EMQX_NAME=sstk-emqx1
+      - EMQX_HOST=sstk1.emqx.io
+      - EMQX_CLUSTER__DISCOVERY_STRATEGY=static
+      - EMQX_CLUSTER__STATIC__SEEDS=[sstk-emqx1@sstk1.emqx.io, sstk-emqx2@sstk2.emqx.io]
+    restart: unless-stopped
+    ports:
+      - "10808:18083"
+    networks:
+      heb_network:
+        ipv4_address: 172.35.0.21
+    volumes:
+      - emqx-data:/opt/emqx/data
+      - emqx-etc:/opt/emqx/etc
+      - emqx-log:/opt/emqx/log
+
+  emqx2:
+    image: emqx/emqx:5.5.0
+    container_name: sstk-emqx-node-2
+    environment:
+      - EMQX_NAME=sstk-emqx2
+      - EMQX_HOST=sstk2.emqx.io
+      - EMQX_CLUSTER__DISCOVERY_STRATEGY=static
+      - EMQX_CLUSTER__STATIC__SEEDS=[sstk-emqx1@sstk1.emqx.io, sstk-emqx2@sstk2.emqx.io]
+    restart: unless-stopped
+    networks:
+      heb_network:
+        ipv4_address: 172.35.0.22
+        aliases:
+          - sstk2.emqx.io
+    volumes:
+      - emqx-data:/opt/emqx/data
+      - emqx-etc:/opt/emqx/etc
+      - emqx-log:/opt/emqx/log
+
+  emqx-lb:
+    image: nginx:1.25.4-alpine
+    container_name: emqx-lb
+    ports:
+      - "10031:1883"    # MQTT default port
+      #- "10883:8883"    # Secure MQTT
+      - "10083:8083"    # MQTT over WebSocket
+      #- "10084:8084"    # Secure WebSocket
+      - "10088:8888"    # Nginx status
+    volumes:
+      - ./nginx-lb/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      heb_network:
+        ipv4_address: 172.35.0.2
+    restart: always
+
+  # MinIO Service (Object Storage)
+  minio:
+    image: quay.io/minio/minio:RELEASE.2024-12-18T13-15-44Z
+    container_name: minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: root
+      MINIO_ROOT_PASSWORD: tanyaBuFar
+    volumes:
+      - minio_data:/data
+    ports:
+      - "10003:9000"
+      - "10007:9001"
+    networks:
+      heb_network:
+        ipv4_address: 172.35.0.4
+    restart: unless-stopped
+
+volumes:
+  minio_data:
+  db_data:
+  emqx-data:
+  emqx-log:
+  emqx-etc:
