@@ -1,6 +1,6 @@
 # Building Energy Management System (BEMS) – DTNTF UGM
 
-This repository contains the backend system for a Building Energy Management System (BEMS) designed to monitor Indoor Environmental Quality (IEQ) and energy consumption within buildings. This project supports DTNTF UGM's initiative towards achieving Zero Energy Buildings.
+This repository contains the backend system and deployment configurations for a Building Energy Management System (BEMS) designed to monitor Indoor Environmental Quality (IEQ) and energy consumption within buildings. This project supports DTNTF UGM's initiative towards achieving Zero Energy Buildings.
 
 ---
 
