@@ -8,11 +8,34 @@ This repository contains the backend system and deployment configurations for an
 
 - Dimas Fredy Prakasa  
 - Edina Tri Susilo  
-- Gilang Qhismu Adjie
-- **Kendra Khairan Ajie** *(repository owner)*
+- Gilang Qhismu Adjie  
+- **Kendra Khairan Ajie** *(repository owner)*  
 - Muhammad Faiq Irhab  
 - Muhammad Itqon Alexander  
-- Shaki Saptiadi Putra
+- Shaki Saptiadi Putra  
+
+---
+
+## Overview
+
+The **Building Energy Management System (BEMS)** is an Internet of Things (IoT) solution designed to monitor and manage indoor environmental quality (IEQ) and energy consumption in buildings. The system integrates physical sensors and soft sensors to optimize energy usage while maintaining occupant comfort, and supports the achievement of Zero Energy Building goals.  
+
+**Access the system here:** [https://bms-sstk.id/](https://bms-sstk.id/)  
+
+**Key Features:**  
+
+### **Monitoring**
+- **IEQ Monitoring** using physical sensors and soft sensors (temperature, humidity, CO₂ concentration, light intensity, etc.)  
+- **Energy Monitoring** for real-time and historical energy usage tracking  
+- **Outdoor Environment Monitoring** for weather and external air quality data  
+
+### **Management**
+- **Smart Switch Control** for automated or manual energy usage optimization  
+- **Soft Sensor Model Management** including upload and selection of predictive models for IEQ estimation  
+
+**System Overview Screenshots:**  
+![IEQ Monitoring](assets/ieq-monitoring.png)  
+![Energy Monitoring](assets/energy-monitoring.png)  
 
 ---
 
@@ -37,12 +60,13 @@ The BEMS, containerized using Docker, consists of physical sensors and soft sens
 ![Skema Sistem](assets/deployment-scheme.png)
 
 **Technologies Used (Backend Focused):**
-- **Programming Language:** Golang, Python 
+- **Programming Language:** Golang, Python
 - **Database:** MariaDB
 - **Storage:** MinIO  
 - **Deployment:** Docker
 - **Communication Protocols:** HTTP (REST API), MQTT, WebSocket
 - **Other Tools:** Postman
+
 ---
 
 ## Backend Scope and Responsibilities
@@ -52,7 +76,7 @@ This repository contains the **backend portion** of the BEMS project, including:
 - Development of RESTful API and Websocket Server for data access and control.
 - Database schema and management.
 - Integration with MinIO object storage for sensor data and file storage.
-- Full IoT system deployment. 
+- Full IoT system deployment (software). 
 
 ### Backend Boundaries and Focus
 
