@@ -36,6 +36,13 @@ The BEMS, containerized using Docker, consists of physical sensors and soft sens
 
 ![Skema Sistem](assets/deployment-scheme.png)
 
+**Technologies Used:**
+- **Backend:** Golang, Python 
+- **Database:** MariaDB
+- **Storage:** MinIO  
+- **Deployment:** Docker
+- **Communication Protocols:** HTTP (REST API), MQTT, WebSocket
+- **Other Tools:** Postman
 ---
 
 ## Backend Scope and Responsibilities
