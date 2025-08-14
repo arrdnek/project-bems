@@ -37,9 +37,9 @@ ieq_params = [
 app = FastAPI()
 
 origins = [
-    "http://10.46.7.51:10006",
-    "http://localhost:10006",
-    "http://172.35.0.7:10006"
+    "http://xxx:10006",
+    "http://xxx:10006",
+    "http://xxx:10006"
 ]
 
 app.add_middleware(
@@ -339,5 +339,6 @@ async def deploy(site_id: str) -> Dict[str, float | str | None]:
     log.append(time.time() - overall_time)
     log_csv.writerow(log)
     log_file.close()
+
 
     return result
