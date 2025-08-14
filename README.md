@@ -36,8 +36,8 @@ The BEMS, containerized using Docker, consists of physical sensors and soft sens
 
 ![Skema Sistem](assets/deployment-scheme.png)
 
-**Technologies Used:**
-- **Backend:** Golang, Python 
+**Technologies Used (Backend Focused):**
+- **Programming Language:** Golang, Python 
 - **Database:** MariaDB
 - **Storage:** MinIO  
 - **Deployment:** Docker
@@ -49,9 +49,10 @@ The BEMS, containerized using Docker, consists of physical sensors and soft sens
 
 This repository contains the **backend portion** of the BEMS project, including:
 
-- Development of **RESTful API** for data access and control
-- **Database schema and management**
-- Integration with **MinIO object storage** for sensor data and file storage
+- Development of RESTful API and Websocket Server for data access and control.
+- Database schema and management.
+- Integration with MinIO object storage for sensor data and file storage.
+- Full IoT system deployment. 
 
 ### Backend Boundaries and Focus
 
