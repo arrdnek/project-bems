@@ -1,6 +1,6 @@
 # Building Energy Management System (BEMS) – DTNTF UGM
 
-This repository contains the backend system and deployment configurations for an Internet of Things System called Building Energy Management System (BEMS) designed to monitor and manage Indoor Environmental Quality (IEQ) and energy consumption within buildings. This project supports DTNTF UGM's initiative towards achieving Zero Energy Buildings.
+This repository contains the backend system and deployment configurations for an Internet of Things System called Building Energy Management System (BEMS) designed to monitor and manage Indoor Environmental Quality (IEQ) and energy consumption within buildings. This project supports Departemen Teknik Nuklir dan Teknik Fisika Universitas Gadjah Mada (DTNTF UGM)'s initiative towards achieving Zero Energy Buildings.
 
 ---
 
