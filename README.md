@@ -30,11 +30,11 @@ The following map shows the local deployment area of the system:
 
 ## System Architecture
 
-The BEMS consists of physical sensors and soft-sensors for monitoring parameters related to energy usage and indoor environmental quality (IEQ), such as temperature, humidity, light intensity, and CO₂ concentration.
+The BEMS, containerized using Docker, consists of physical sensors and soft sensors for monitoring parameters related to energy usage and indoor environmental quality (IEQ), such as temperature, humidity, light intensity, and CO₂ concentration.
 
 ### System Diagram
 
-![Skema Sistem](assets/skema-sistem.png)
+![Skema Sistem](assets/deployment-scheme.png)
 
 ---
 
